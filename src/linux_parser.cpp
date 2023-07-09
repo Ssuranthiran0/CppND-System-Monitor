@@ -58,7 +58,7 @@ vector<int> LinuxParser::Pids() {
       // Is every character of the name a digit?
       string filename(file->d_name);
       if (std::all_of(filename.begin(), filename.end(), isdigit)) {
-        int pid = stoi(filename);
+        int pid = atoi(filename.c_str());
         pids.push_back(pid);
       }
     }
@@ -187,7 +187,7 @@ int LinuxParser::TotalProcesses() {
       while (linestream >> key) {
         if (key == "processes") { // right line?
           linestream >> value;
-          return std::stoi(value); 
+          return atoi(value.c_str()); 
         }
       }
     }
@@ -208,7 +208,7 @@ int LinuxParser::RunningProcesses() {
       while (linestream >> key) {
         if (key == "procs_running") { // only difference to above function
           linestream >> value;
-          return std::stoi(value);
+          return atoi(value.c_str());
         }
       }
     }

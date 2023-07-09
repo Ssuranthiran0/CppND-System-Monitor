@@ -41,5 +41,5 @@ long int Process::UpTime() { return LinuxParser::UpTime(pid_); }
 // REMOVE: [[maybe_unused]] once you define the function DONE
 bool Process::operator<(Process const& a) const {
     //return LinuxParser::Ram(Pid()) < LinuxParser::Ram(a.Pid());
-    return std::stoi(Ram()) > std::stoi(a.Ram());
+    return atoi(Ram().c_str()) > atoi(a.Ram().c_str());
 }
