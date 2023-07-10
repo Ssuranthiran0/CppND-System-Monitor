@@ -221,8 +221,8 @@ string LinuxParser::User(int pid) {
   if(filestream.is_open()){
     while(getline(filestream, line)){
       istringstream linestream(line); // substr: https://www.geeksforgeeks.org/substring-in-cpp/
-      int pos = line.find(":x:"+Uid(pid)); // structure is XXXX:x:YYYY     where XXXX is username, YYYY is pid
-      if(pos){ // if right line
+      string::size_type pos = line.find(":x:"+Uid(pid)); // structure is XXXX:x:YYYY     where XXXX is username, YYYY is pid
+      if(pos != string::npos){ // if right line
         username = line.substr(0, pos); // get the part of the string before the pos (get the XXXX)
         break; // checking result with htop, user seems to be root, which is accurate
       }
